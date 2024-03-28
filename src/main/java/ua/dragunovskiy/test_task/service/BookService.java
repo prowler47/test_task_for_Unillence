@@ -6,12 +6,13 @@ import ua.dragunovskiy.test_task.dao.Dao;
 import ua.dragunovskiy.test_task.entity.Book;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-public class BookService implements AbstractService<Integer, Book>{
+public class BookService implements AbstractService<UUID, Book>{
 
     @Autowired
-    private Dao<Integer, Book> bookDao;
+    private Dao<UUID, Book> bookDao;
 
     @Override
     public List<Book> getAll() {
@@ -24,12 +25,12 @@ public class BookService implements AbstractService<Integer, Book>{
     }
 
     @Override
-    public Book update(Integer id, Book updatedEntity) {
-        return bookDao.update(id, updatedEntity);
+    public Book update(UUID id, Book entityForUpdate) {
+        return bookDao.update(id, entityForUpdate);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         bookDao.delete(id);
     }
 }

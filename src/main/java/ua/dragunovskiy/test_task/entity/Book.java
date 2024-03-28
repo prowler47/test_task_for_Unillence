@@ -6,11 +6,11 @@ import lombok.Data;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Book")
+@Table(name = "book")
 @Data
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
     private String author;

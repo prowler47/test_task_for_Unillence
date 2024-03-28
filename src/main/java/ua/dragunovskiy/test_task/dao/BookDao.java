@@ -4,12 +4,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.dragunovskiy.test_task.entity.Book;
 
 import java.util.List;
+import java.util.UUID;
 
-public class BookDao implements Dao<Integer, Book> {
+@Repository
+public class BookDao implements Dao<UUID, Book> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -30,7 +33,7 @@ public class BookDao implements Dao<Integer, Book> {
 
     @Override
     @Transactional
-    public Book update(Integer id, Book bookForUpdate) {
+    public Book update(UUID id, Book bookForUpdate) {
         Session session = entityManager.unwrap(Session.class);
         Book updatedBook = session.get(Book.class, id);
         updatedBook.setId(bookForUpdate.getId());
@@ -43,7 +46,7 @@ public class BookDao implements Dao<Integer, Book> {
 
     @Override
     @Transactional
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         Session session = entityManager.unwrap(Session.class);
         Book deletedBook = session.get(Book.class, id);
         session.remove(deletedBook);
